@@ -7,6 +7,7 @@
     border: 1px solid #CCC;
     vertical-align: top;
     width: 14.29%;
+    height: 20%;
 }
 .calendar__weekDay{
     font-weight: bold;
@@ -15,4 +16,8 @@
 }
 .calendar__day{
     
+}
+
+.calendar__6weekDay{
+     height: 16.67%!important;
 }

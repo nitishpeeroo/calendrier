@@ -30,10 +30,14 @@
             <?php for ($i = 0; $i < $month->getWeeks(); $i++): ?>
                 <tr>
                     <?php foreach ($month->days as $k => $day): ?>
-                        <td>
+                        <?php if ($month->getWeeks() == 6) { ?>
+                            <td class='calendar__6weekDay'> 
+                            <?php } else { ?>
+                            <td >
+                            <?php } ?>
                             <?php if ($i === 0) { ?>
                                 <div class="calendar__weekDay">
-                                <?=
+                                    <?=
                                     $day;
                                 }
                                 ?>

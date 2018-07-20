@@ -7,7 +7,8 @@ class Month {
     private $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     private $month;
     private $year;
-
+    
+    public $days = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
     /**
      * Month constructor
      * @param int $month Le mois compris entre 1 et 12
@@ -46,7 +47,7 @@ class Month {
      * @return int nombre de semaines 
      */
     public function getWeeks() {
-        $start = new \DateTime("{$this->year}-{$this->month}-01");
+        $start = $this->getStartingDay();
         $end = clone $start;
         $end = $end->modify("+1 month -1 day");
         $numberWeeks = intval($end->format('W') - $start->format('W')) + 1 ;
@@ -54,6 +55,14 @@ class Month {
             $numberWeeks = intval($end->format('W'));
         }
         return $numberWeeks;
+    }
+    
+    /**
+     * premier jour du mois
+     * @return dateTime 
+     */
+    public function getStartingDay() {
+         return new \DateTime("{$this->year}-{$this->month}-01"); 
     }
 
 }

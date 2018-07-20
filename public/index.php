@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/calendar.css"/>
+
         <title>Mon super Calendrier</title>
     </head>
     <body>
@@ -12,18 +14,42 @@
 
         <?php
         require '../src/Date/Month.php';
-         
-        if(!isset($_GET['month'])){
+
+        if (!isset($_GET['month'])) {
             $_GET['month'] = null;
         }
-         if(!isset($_GET['year'])){
+        if (!isset($_GET['year'])) {
             $_GET['year'] = null;
         }
-        $month = new App\Date\Month($_GET['month'] ,$_GET['year']);
+        $month = new App\Date\Month($_GET['month'], $_GET['year']);
+        $start = $month->getStartingDay()->modify("last monday");
         ?>
-        
+
         <h1><?= $month->toString(); ?></h1>
-        <h2><?= $month->getWeeks(); ?></h2>
-        
+        <table class="calendar__table">
+            <?php for ($i = 0; $i < $month->getWeeks(); $i++): ?>
+                <tr>
+                    <?php foreach ($month->days as $k => $day): ?>
+                        <td>
+                            <?php if ($i === 0) { ?>
+                                <div class="calendar__weekDay">
+                                <?=
+                                    $day;
+                                }
+                                ?>
+                            </div>
+
+
+                            <div class="calendar__day">
+                                <?php
+                                $d = clone $start;
+                                echo $d->modify("+" . ($k + $i * 7) . " days")->format('d');
+                                ?>
+                            </div>
+                        </td>
+                    <?php endforeach; ?>            
+                </tr>
+            <?php endfor; ?>
+        </table>
     </body>
 </html>

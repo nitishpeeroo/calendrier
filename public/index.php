@@ -23,6 +23,7 @@
         ?>
         
         <h1><?= $month->toString(); ?></h1>
+        <h2><?= $month->getWeeks(); ?></h2>
         
     </body>
 </html>

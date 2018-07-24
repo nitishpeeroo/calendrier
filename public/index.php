@@ -24,17 +24,19 @@
         $month = new App\Date\Month($_GET['month'], $_GET['year']);
         $start = $month->getStartingDay()->modify("last monday");
         ?>
-
-        <h1><?= $month->toString(); ?></h1>
-        <table class="calendar__table">
+        <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
+             <h1><?= $month->toString(); ?></h1>
+             <div>
+                 <a href="" class="btn btn-primary">&lt;</a>
+                 <a href="" class="btn btn-primary">&gt;</a>
+             </div>
+        </div>
+       
+        <table class="calendar__table calendar__table--<?= $month->getWeeks(); ?>weeks">
             <?php for ($i = 0; $i < $month->getWeeks(); $i++): ?>
                 <tr>
                     <?php foreach ($month->days as $k => $day): ?>
-                        <?php if ($month->getWeeks() == 6) { ?>
-                            <td class='calendar__6weekDay'> 
-                            <?php } else { ?>
-                            <td >
-                            <?php } ?>
+                        <td> 
                             <?php if ($i === 0) { ?>
                                 <div class="calendar__weekDay">
                                     <?=
@@ -42,12 +44,10 @@
                                 }
                                 ?>
                             </div>
-
-
                             <div class="calendar__day">
                                 <?php
-                                $d = clone $start;
-                                echo $d->modify("+" . ($k + $i * 7) . " days")->format('d');
+                                $day = clone $start;
+                                echo $day->modify("+" . ($k + $i * 7) . " days")->format('d');
                                 ?>
                             </div>
                         </td>

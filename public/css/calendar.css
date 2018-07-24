@@ -9,15 +9,19 @@
     width: 14.29%;
     height: 20%;
 }
+
+.calendar__day{
+    font-size: 1.3em;
+}
+
+.calendar__table--6weeks td{
+     height: 16.66%!important;
+}
 .calendar__weekDay{
     font-weight: bold;
     color: black;
     font-size: 1.2em;
 }
-.calendar__day{
-    
-}
-
-.calendar__6weekDay{
-     height: 16.67%!important;
+.calendar__otherMonth .calendar__day{
+    opacity: 0.3;
 }
